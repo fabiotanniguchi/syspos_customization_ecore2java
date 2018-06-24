@@ -5,8 +5,56 @@
 [template public classToJava(cs : CustomizedSystem)]
 [comment @main/]
 
+
+
+
+	[for (ed : ExtendedData | cs.extendeddata)]
+		[file (ed.className.concat('.java'), false, 'UTF-8')]
+package br.unicamp.syspos.domain.extended;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="[ed.className.toUpperCase()/]")
+public class [ed.className/]{
+
+			[for (attr : Property | ed.property)]
+	private [attr.type.toString().toLowerCase().toUpperFirst()/] [attr.name/];
+			[/for]
+
+			[for (attr : Property | ed.property)]
+	@Column(name="[attr.name.toUpperCase()/]")
+	public [attr.type.toString().toLowerCase().toUpperFirst()/] ['get'.concat(attr.name)/](){
+		return this.[attr.name/];
+	}
+
+			[/for]
+
+			[for (attr : Property | ed.property)]
+	public void ['get'.concat(attr.name)/]([attr.type.toString().toLowerCase().toUpperFirst()/] [attr.name/]){
+		this.[attr.name/] = [attr.name/];
+	}
+
+			[/for]
+}
+		[/file]
+	[/for]
+
+
+
+
+
+
+
+
 	[for (cd : CustomData | cs.customdata)]
 		[file (cd.className.concat('.java'), false, 'UTF-8')]
+package br.unicamp.syspos.domain.custom;
+
+import javax.persistence.*;
+
+import br.unicamp.syspos.domain.basic.[cd.baseClass/];
+
 @Entity
 public class [cd.className/] extends [cd.baseClass/]{
 
@@ -15,12 +63,15 @@ public class [cd.className/] extends [cd.baseClass/]{
 			[/for]
 
 			[for (attr : Property | cd.property)]
+	@Column(name="[attr.name.toUpperCase()/]")
 	public [attr.type.toString().toLowerCase().toUpperFirst()/] ['get'.concat(attr.name)/](){
 		return this.[attr.name/];
 	}
+
 			[/for]
 
 			[for (attr : Property | cd.property)]
+
 	public void ['get'.concat(attr.name)/]([attr.type.toString().toLowerCase().toUpperFirst()/] [attr.name/]){
 		this.[attr.name/] = [attr.name/];
 	}
@@ -29,28 +80,7 @@ public class [cd.className/] extends [cd.baseClass/]{
 		[/file]
 	[/for]
 
-	[for (ed : ExtendedData | cs.extendeddata)]
-		[file (ed.className.concat('.java'), false, 'UTF-8')]
-@Entity
-public class [ed.className/]{
 
-			[for (attr : Property | ed.property)]
-	private [attr.type.toString().toLowerCase().toUpperFirst()/] [attr.name/];
-			[/for]
 
-			[for (attr : Property | ed.property)]
-	public [attr.type.toString().toLowerCase().toUpperFirst()/] ['get'.concat(attr.name)/](){
-		return this.[attr.name/];
-	}
-			[/for]
-
-			[for (attr : Property | ed.property)]
-	public void ['get'.concat(attr.name)/]([attr.type.toString().toLowerCase().toUpperFirst()/] [attr.name/]){
-		this.[attr.name/] = [attr.name/];
-	}
-			[/for]
-}
-		[/file]
-	[/for]
 
 [/template]
