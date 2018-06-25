@@ -5,29 +5,29 @@ import javax.persistence.*;
 import br.unicamp.syspos.domain.basic.AcademicLife;
 
 @Entity
-public class CustomizedAcademicLife extends AcademicLife{
+public class CustomAcademicLife extends AcademicLife{
 
 	private Long reprovedCreditSum;
 	private Long blockedCreditSum;
 	private Double crDac;
 	private Double cpDac;
 
-	@Column(name="REPROVEDCREDITSUM")
+	@Column(name="REPROVEDCREDITSUM" , nullable=false )
 	public Long getreprovedCreditSum(){
 		return this.reprovedCreditSum;
 	}
 
-	@Column(name="BLOCKEDCREDITSUM")
+	@Column(name="BLOCKEDCREDITSUM" , nullable=false )
 	public Long getblockedCreditSum(){
 		return this.blockedCreditSum;
 	}
 
-	@Column(name="CRDAC")
+	@Column(name="CRDAC" )
 	public Double getcrDac(){
 		return this.crDac;
 	}
 
-	@Column(name="CPDAC")
+	@Column(name="CPDAC" )
 	public Double getcpDac(){
 		return this.cpDac;
 	}

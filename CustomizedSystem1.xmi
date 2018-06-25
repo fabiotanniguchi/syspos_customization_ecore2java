@@ -6,28 +6,33 @@
     xmlns:syspos_customization="http://www.unicamp.br/syspos/customizedsyspos_customization"
     xsi:schemaLocation="http://www.unicamp.br/syspos/customizedsyspos_customization syspos_customization.ecore">
   <extendeddata
-      className="LanguageNonEnglishProficiency">
-    <property
-        type="LONG"
-        name="academicLifeId"/>
-    <property
-        type="DOUBLE"
-        name="score"/>
-    <property
-        type="LONG"
-        name="dateMillis"/>
+      className="NonEnglishProficiency">
     <property
         name="description"/>
+    <property
+        type="DOUBLE"
+        name="score"
+        required="true"/>
+    <property
+        type="LONG"
+        name="dateMillis"
+        required="true"/>
+    <property
+        type="LONG"
+        name="academicLifeId"
+        required="true"/>
   </extendeddata>
   <customdata
-      className="CustomizedAcademicLife"
+      className="CustomAcademicLife"
       baseClass="AcademicLife">
     <property
         type="LONG"
-        name="reprovedCreditSum"/>
+        name="reprovedCreditSum"
+        required="true"/>
     <property
         type="LONG"
-        name="blockedCreditSum"/>
+        name="blockedCreditSum"
+        required="true"/>
     <property
         type="DOUBLE"
         name="crDac"/>

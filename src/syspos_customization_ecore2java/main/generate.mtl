@@ -23,7 +23,7 @@ public class [ed.className/]{
 			[/for]
 
 			[for (attr : Property | ed.property)]
-	@Column(name="[attr.name.toUpperCase()/]")
+	@Column(name="[attr.name.toUpperCase()/]" [if (attr.required)], nullable=false [/if])
 	public [attr.type.toString().toLowerCase().toUpperFirst()/] ['get'.concat(attr.name)/](){
 		return this.[attr.name/];
 	}
@@ -63,7 +63,7 @@ public class [cd.className/] extends [cd.baseClass/]{
 			[/for]
 
 			[for (attr : Property | cd.property)]
-	@Column(name="[attr.name.toUpperCase()/]")
+	@Column(name="[attr.name.toUpperCase()/]" [if (attr.required)], nullable=false [/if])
 	public [attr.type.toString().toLowerCase().toUpperFirst()/] ['get'.concat(attr.name)/](){
 		return this.[attr.name/];
 	}
